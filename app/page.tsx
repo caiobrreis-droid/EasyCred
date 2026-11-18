@@ -131,8 +131,10 @@ export default function Home() {
               <Image
                 src="/dono.webp"
                 alt="Fundador da EasyCred apontando para a câmera"
-                width={399}
-                height={670}
+                width={1601}
+                height={2682}
+                sizes="(min-width: 1000px) 460px, 270px"
+                quality={90}
                 priority
                 className="hero__pessoa"
               />
