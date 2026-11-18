@@ -12,12 +12,13 @@ const display = Archivo({
 const body = Figtree({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://easycred.pages.dev"),
   title: "EasyCred | Limpe seu nome, destrave seu crédito",
   description:
-    "Consulte grátis seu score e veja se seu nome está negativado. A EasyCred limpa CPF e CNPJ, aumenta score e rating e resolve pendências no Bacen. Atendimento em todo o Brasil.",
+    "A EasyCred limpa o nome de CPF e CNPJ, aumenta score e rating e resolve pendências no Bacen. Atendimento pelo WhatsApp em todo o Brasil.",
   openGraph: {
     title: "EasyCred | Limpe seu nome",
-    description: "Consulte grátis seu score e descubra se seu nome está negativado.",
+    description: "Limpeza de nome, aumento de score e rating e Bacen. Atendimento em todo o Brasil.",
     locale: "pt_BR",
     type: "website",
     images: ["/logo@2x.png"],

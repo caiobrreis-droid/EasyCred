@@ -1,26 +1,33 @@
 # EasyCred — site
 
-Site institucional da EasyCred (limpa nome, score, rating e Bacen) com consulta de CPF.
+Site institucional da EasyCred (limpa nome, score, rating e Bacen).
+
+No ar em: https://easycred.pages.dev
 
 ## Rodar localmente
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-## Consulta de CPF
+## Publicar (Cloudflare Pages)
 
-A rota `POST /api/consulta` valida o CPF, exige consentimento (LGPD), limita 5 consultas por IP por hora e chama o provedor configurado:
+O site é exportado como estático (`output: "export"` no `next.config.mjs`) para a pasta `out/` e publicado no projeto `easycred` do Cloudflare Pages.
 
-- `CONSULTA_PROVIDER=demo` (padrão): resultado simulado. O site avisa o visitante de que é uma demonstração.
-- `CONSULTA_PROVIDER=http`: chama a API contratada (`CONSULTA_API_URL` + `CONSULTA_API_TOKEN`). Ajuste `mapear()` em `lib/consulta/http.ts` ao formato do fornecedor escolhido.
+```bash
+npm run deploy
+```
 
-Cada consulta pode ser enviada como lead para `LEAD_WEBHOOK_URL`.
+Isso roda `next build` e `wrangler pages deploy out --project-name easycred`. É preciso estar logado na Cloudflare (`npx wrangler login`).
 
-## Deploy no Railway
+Os cabeçalhos de segurança ficam em `public/_headers`.
 
-1. Novo projeto → Deploy from GitHub → este repositório.
-2. Variáveis: as do `.env.example` (no mínimo `NEXT_PUBLIC_WHATSAPP`).
-3. O Railway detecta Node, roda `npm run build` e `npm start` (usa a variável `PORT`).
+## Variáveis
+
+- `NEXT_PUBLIC_WHATSAPP`: número de atendimento com DDI e DDD (ex.: `5595999999999`). Sem ele, os botões levam ao Linktree. Como o site é estático, a variável precisa existir **no momento do build** (`.env.local` ou no ambiente de quem roda `npm run deploy`).
+- `NEXT_PUBLIC_SITE_URL`: endereço final do site (padrão `https://easycred.pages.dev`), usado nas prévias de link.
+
+## Consulta de CPF (desligada)
+
+O componente `components/ConsultaScore.tsx` e os provedores em `lib/consulta/` continuam no projeto, mas fora da página. A rota de API (`app/api/consulta/route.ts`) foi removida porque o site estático não roda servidor; ela está no histórico do Git (commit `466e551`). Para reativar a consulta será preciso um servidor (Railway, ou Cloudflare Workers com o adaptador OpenNext).

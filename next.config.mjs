@@ -1,19 +1,12 @@
-/** @type {import('next').NextConfig} */
+/**
+ * Site exportado como estático (pasta `out/`) para o Cloudflare Pages.
+ * Os cabeçalhos de segurança ficam em `public/_headers`, que o Pages lê.
+ *
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
+  output: "export",
   poweredByHeader: false,
-  images: { qualities: [75, 90] },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
-  },
+  images: { unoptimized: true },
 };
 export default nextConfig;

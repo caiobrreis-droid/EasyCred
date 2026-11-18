@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p ${PORT:-3000}",
-    "lint": "tsc --noEmit"
+    "start": "npx serve out",
+    "lint": "tsc --noEmit",
+    "deploy": "next build && wrangler pages deploy out --project-name easycred"
   },
   "engines": {
     "node": ">=20"
@@ -20,6 +21,7 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.165.0"
   }
 }
