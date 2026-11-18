@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Logo } from "@/components/Logo";
+import { Header } from "@/components/Header";
 
 export const metadata: Metadata = { title: "Política de privacidade | EasyCred" };
 
 export default function Privacidade() {
   return (
     <>
-      <header className="topo">
-        <div className="container topo__inner">
-          <a href="/" aria-label="Voltar para a página inicial">
-            <Logo />
-          </a>
-        </div>
-      </header>
+      <Header />
       <main className="texto-legal">
         <div className="container">
           <h1>Política de privacidade</h1>

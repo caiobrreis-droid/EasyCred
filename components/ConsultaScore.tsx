@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Gauge } from "./Gauge";
+import { Seta } from "./Seta";
 import { formatCpf, formatPhone, isValidCpf } from "@/lib/cpf";
 import { linkWhatsApp } from "@/lib/site";
 import type { ResultadoConsulta } from "@/lib/consulta/types";
@@ -61,9 +62,15 @@ export function ConsultaScore() {
 
   return (
     <section className="consulta" id="consulta" aria-labelledby="consulta-titulo">
-      <h2 id="consulta-titulo" className="consulta__titulo">
-        {resultado ? "Resultado da sua consulta" : "Consulte seu CPF agora"}
-      </h2>
+      <div className="consulta__cabeca">
+        <h2 id="consulta-titulo" className="consulta__titulo">
+          {resultado ? "Resultado da sua consulta" : "Consulte seu CPF agora"}
+        </h2>
+        <span className="consulta__selo">
+          <span className="ponto-vivo" aria-hidden="true" />
+          Grátis
+        </span>
+      </div>
 
       <Gauge score={resultado?.score ?? null} carregando={carregando} />
 
@@ -90,10 +97,11 @@ export function ConsultaScore() {
             </span>
           </div>
 
-          <a className="botao botao--cheio" href={linkWhatsApp(mensagemWhats)} target="_blank" rel="noopener noreferrer">
-            {resultado.negativado ? "Quero limpar meu nome" : "Quero aumentar meu score"}
+          <a className="btn btn--largo" href={linkWhatsApp(mensagemWhats)} target="_blank" rel="noopener noreferrer">
+            <span>{resultado.negativado ? "Quero limpar meu nome" : "Quero aumentar meu score"}</span>
+            <Seta />
           </a>
-          <button type="button" className="botao botao--texto" onClick={novaConsulta}>
+          <button type="button" className="link-acao" onClick={novaConsulta}>
             Fazer outra consulta
           </button>
         </div>
@@ -137,8 +145,9 @@ export function ConsultaScore() {
               {erro}
             </p>
           )}
-          <button className="botao botao--cheio" type="submit" disabled={carregando}>
-            {carregando ? "Consultando…" : "Consultar grátis"}
+          <button className="btn btn--largo" type="submit" disabled={carregando}>
+            <span>{carregando ? "Consultando…" : "Consultar grátis"}</span>
+            <Seta />
           </button>
           <p className="form__nota">Consultar o próprio CPF não baixa o seu score.</p>
         </form>
