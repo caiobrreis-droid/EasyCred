@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { linkWhatsApp, site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Política de privacidade | EasyCred" };
 
@@ -15,13 +16,25 @@ export default function Privacidade() {
             de Dados (Lei 13.709/2018).
           </p>
 
+          <h2>Quem é o responsável pelos seus dados</h2>
+          <p>
+            {site.razaoSocial} (EasyCred), CNPJ {site.cnpj}, com sede em {site.cidade}. Contato pelo WhatsApp{" "}
+            <a href={linkWhatsApp("Olá! Tenho uma dúvida sobre meus dados pessoais.")} target="_blank" rel="noopener noreferrer">
+              {site.whatsappExibicao}
+            </a>
+            .
+          </p>
+
           <h2>Quais dados coletamos</h2>
-          <p>Na consulta do site: nome, CPF e número de WhatsApp. No atendimento: os documentos que você enviar para o seu processo.</p>
+          <p>
+            Os dados que você nos envia no atendimento pelo WhatsApp, como nome, CPF ou CNPJ, telefone e os documentos
+            necessários para o seu processo.
+          </p>
 
           <h2>Para que usamos</h2>
           <p>
-            Para consultar a situação do seu CPF a seu pedido, entrar em contato com você sobre o resultado e prestar os
-            serviços que você contratar. A consulta só é feita quando você confirma que o CPF é seu.
+            Para consultar a situação do seu CPF ou CNPJ a seu pedido, entrar em contato com você e prestar os serviços que
+            você contratar.
           </p>
 
           <h2>Com quem compartilhamos</h2>

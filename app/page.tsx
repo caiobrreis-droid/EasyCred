@@ -385,12 +385,16 @@ export default function Home() {
             <a href={site.instagram} target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
-            <a href={site.linktree} target="_blank" rel="noopener noreferrer">
-              Contatos
+            <a href={linkWhatsApp()} target="_blank" rel="noopener noreferrer">
+              WhatsApp {site.whatsappExibicao}
             </a>
             <a href="/privacidade">Política de privacidade</a>
           </nav>
-          <p className="rodape__legal">© {new Date().getFullYear()} EasyCred. Todos os direitos reservados.</p>
+          <p className="rodape__legal">
+            © {new Date().getFullYear()} EasyCred. Todos os direitos reservados.
+            <br />
+            {site.razaoSocial}, CNPJ {site.cnpj}, {site.cidade}
+          </p>
         </div>
       </footer>
 

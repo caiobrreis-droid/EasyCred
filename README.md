@@ -25,7 +25,7 @@ Os cabeçalhos de segurança ficam em `public/_headers`.
 
 ## Variáveis
 
-- `NEXT_PUBLIC_WHATSAPP`: número de atendimento com DDI e DDD (ex.: `5595999999999`). Sem ele, os botões levam ao Linktree. Como o site é estático, a variável precisa existir **no momento do build** (`.env.local` ou no ambiente de quem roda `npm run deploy`).
+- `NEXT_PUBLIC_WHATSAPP`: troca o número de atendimento (padrão `5595981014533`, definido em `lib/site.ts`). Como o site é estático, a variável só vale se existir **no momento do build**.
 - `NEXT_PUBLIC_SITE_URL`: endereço final do site (padrão `https://easycred.pages.dev`), usado nas prévias de link.
 
 ## Consulta de CPF (desligada)
