@@ -1,4 +1,4 @@
-import { ConsultaScore } from "@/components/ConsultaScore";
+import Image from "next/image";
 import { Contador } from "@/components/Contador";
 import { Header } from "@/components/Header";
 import { HeroShapes } from "@/components/HeroShapes";
@@ -12,14 +12,17 @@ import { linkWhatsApp, site } from "@/lib/site";
 const FAIXA = ["Limpeza de CPF", "Limpeza de CNPJ", "Aumento de score", "Aumento de rating", "Bacen", "Consulta completa"];
 
 const PASSOS = [
-  { titulo: "Você consulta", texto: "Faça a consulta grátis aqui no site ou chame a gente no WhatsApp." },
+  { titulo: "Você chama", texto: "Mande uma mensagem no WhatsApp contando o que está travando o seu crédito." },
   { titulo: "A gente analisa", texto: "Nossa equipe levanta todas as pendências e explica o seu caso sem enrolação." },
   { titulo: "Plano na mesa", texto: "Você recebe o caminho, o prazo e o valor antes de fechar qualquer coisa." },
   { titulo: "Nome limpo", texto: "Acompanhamos até o fim e avisamos quando o seu crédito estiver liberado." },
 ];
 
 const DUVIDAS = [
-  { p: "A consulta do site é grátis?", r: "Sim. Você vê seu score e se tem pendências sem pagar nada e sem compromisso." },
+  {
+    p: "Como eu começo?",
+    r: "Chame a gente no WhatsApp. Fazemos a consulta do seu CPF ou CNPJ, explicamos o que aparece no seu nome e mostramos o caminho.",
+  },
   {
     p: "Consultar meu CPF baixa o meu score?",
     r: "Não. Consultar o próprio CPF não afeta o score. O que pesa são pedidos de crédito feitos em excesso.",
@@ -92,16 +95,16 @@ export default function Home() {
                 <span className="adesivo adesivo--azul">Destrave seu crédito.</span>
               </h1>
               <p className="hero__lead">
-                Descubra em segundos se o seu nome está negativado e quanto está o seu score. Depois, a EasyCred resolve
-                com você: limpeza de CPF e CNPJ, score, rating e Bacen.
+                A EasyCred tira o seu nome do vermelho e destrava o seu crédito: limpeza de CPF e CNPJ, aumento de score e
+                rating e pendências no Bacen. Tudo pelo WhatsApp, sem sair de casa.
               </p>
               <div className="hero__acoes">
-                <a className="btn" href="#consulta">
-                  <span>Consultar meu CPF grátis</span>
+                <a className="btn" href={linkWhatsApp("Olá! Quero limpar meu nome.")} target="_blank" rel="noopener noreferrer">
+                  <span>Quero limpar meu nome</span>
                   <Seta />
                 </a>
-                <a className="btn btn--vidro" href={linkWhatsApp()} target="_blank" rel="noopener noreferrer">
-                  <span>Falar com especialista</span>
+                <a className="btn btn--vidro" href="#servicos">
+                  <span>Ver serviços</span>
                 </a>
               </div>
               <dl className="hero__numeros">
@@ -123,7 +126,48 @@ export default function Home() {
                 </div>
               </dl>
             </div>
-            <ConsultaScore />
+            <div className="hero__foto">
+              <div className="hero__aura" aria-hidden="true" />
+              <Image
+                src="/dono.webp"
+                alt="Fundador da EasyCred apontando para a câmera"
+                width={399}
+                height={670}
+                priority
+                className="hero__pessoa"
+              />
+              <div className="selo selo--1" aria-hidden="true">
+                <span className="selo__icone selo__icone--verde">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 12.5l4.5 4.5L19 7.5" />
+                  </svg>
+                </span>
+                <span>
+                  <b>Nome limpo</b>
+                  <small>CPF e CNPJ</small>
+                </span>
+              </div>
+              <div className="selo selo--2" aria-hidden="true">
+                <span className="selo__icone">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 17l5-5 4 3 7-8M15 7h5v5" />
+                  </svg>
+                </span>
+                <span>
+                  <b>Score em alta</b>
+                  <small>e rating da empresa</small>
+                </span>
+              </div>
+              <div className="selo selo--3" aria-hidden="true">
+                <span className="selo__icone selo__icone--logo">
+                  <Logo altura={30} />
+                </span>
+                <span>
+                  <b>@easycredrr</b>
+                  <small>25 mil seguidores</small>
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -229,8 +273,13 @@ export default function Home() {
                   <h3>Consulta completa</h3>
                   <p>Levantamos tudo o que aparece no seu nome para você saber exatamente o que precisa ser resolvido.</p>
                 </div>
-                <a className="btn btn--branco" href="#consulta">
-                  <span>Começar pela consulta grátis</span>
+                <a
+                  className="btn btn--branco"
+                  href={linkWhatsApp("Olá! Quero uma consulta completa do meu CPF/CNPJ.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Pedir minha consulta</span>
                   <Seta />
                 </a>
               </article>
@@ -313,10 +362,10 @@ export default function Home() {
               <h2 className="final__titulo">
                 <span className="adesivo">Limpe seu nome.</span>
               </h2>
-              <p>Comece pela consulta. É grátis e leva menos de um minuto.</p>
+              <p>Chame a gente no WhatsApp e descubra o caminho para voltar a ter crédito.</p>
               <div className="hero__acoes">
-                <a className="btn btn--branco" href="#consulta">
-                  <span>Consultar meu CPF</span>
+                <a className="btn btn--branco" href={linkWhatsApp("Olá! Quero limpar meu nome.")} target="_blank" rel="noopener noreferrer">
+                  <span>Quero limpar meu nome</span>
                   <Seta />
                 </a>
                 <a className="btn btn--vidro-claro" href={linkWhatsApp()} target="_blank" rel="noopener noreferrer">
