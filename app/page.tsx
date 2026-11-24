@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { Contador } from "@/components/Contador";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
+import { FotoProfundidade } from "@/components/FotoProfundidade";
 import { Header } from "@/components/Header";
 import { HeroShapes } from "@/components/HeroShapes";
+import { Hero3D } from "@/components/Hero3D";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { Seta } from "@/components/Seta";
 import { Spotlight } from "@/components/Spotlight";
+import { Tilt } from "@/components/Tilt";
 import { Timeline } from "@/components/Timeline";
 import { linkWhatsApp, site } from "@/lib/site";
 
@@ -88,12 +91,15 @@ export default function Home() {
       <Header />
       <Reveal />
       <Spotlight />
+      <Tilt />
+      <FotoProfundidade />
 
       <main id="conteudo">
         {/* ---------------- HERO ---------------- */}
         <section className="hero">
           <div className="hero__pontos" aria-hidden="true" />
           <HeroShapes />
+          <Hero3D />
           <div className="container hero__grid">
             <div className="hero__texto">
               <p className="pilula">
@@ -198,7 +204,7 @@ export default function Home() {
             </div>
 
             <div className="bento">
-              <article className="card spot card--rating" data-reveal>
+              <article className="card spot card--rating" data-reveal data-tilt="5">
                 <div className="card__topo">
                   <div className="card__tags">
                     <span className="card__tag">Pessoa física</span>
@@ -240,7 +246,7 @@ export default function Home() {
                 </div>
               </article>
 
-              <article className="card spot card--limpeza" data-reveal>
+              <article className="card spot card--limpeza" data-reveal data-tilt>
                 <div className="card__topo">
                   <span className="card__tag">CPF e CNPJ</span>
                   <h3>Limpeza de nome</h3>
@@ -264,7 +270,7 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="card spot" data-reveal>
+              <article className="card spot" data-reveal data-tilt>
                 <div className="card__topo">
                   <span className="card__tag">Pessoa física</span>
                   <h3>Aumento de score</h3>
@@ -275,7 +281,7 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="card spot" data-reveal>
+              <article className="card spot" data-reveal data-tilt>
                 <div className="card__topo">
                   <span className="card__tag">Registrato e SCR</span>
                   <h3>Bacen</h3>
@@ -291,7 +297,7 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="card spot card--revisional" data-reveal>
+              <article className="card spot card--revisional" data-reveal data-tilt>
                 <div className="card__topo">
                   <span className="card__tag">Contratos e juros</span>
                   <h3>Ação revisional</h3>
@@ -310,7 +316,7 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="card spot card--consulta" data-reveal>
+              <article className="card spot card--consulta" data-reveal data-tilt>
                 <div className="card__topo">
                   <span className="card__tag">CPF e CNPJ</span>
                   <h3>Consulta completa</h3>
@@ -345,7 +351,7 @@ export default function Home() {
         {/* ---------------- INSTAGRAM ---------------- */}
         <section className="insta" aria-labelledby="insta-titulo">
           <div className="container">
-            <div className="insta__painel" data-reveal>
+            <div className="insta__painel" data-reveal data-tilt="4">
               <div className="insta__texto">
                 <h2 id="insta-titulo" className="secao__titulo">
                   Nossos clientes contam como foi no Instagram.

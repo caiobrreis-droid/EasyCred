@@ -2134,3 +2134,115 @@ section[id] {
     height: 64px;
   }
 }
+
+/* =========================================================
+   3D: cena WebGL do topo, inclinação dos cartões e profundidade da foto
+   ========================================================= */
+.cena3d {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.cena3d canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: cena-entra 1.6s var(--mola) both;
+}
+@keyframes cena-entra {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+.hero > .formas {
+  transition: opacity 0.8s ease;
+}
+.hero--3d > .formas {
+  opacity: 0 !important;
+}
+
+/* Cartões com inclinação e reflexo */
+[data-tilt] {
+  transform-origin: center;
+  will-change: transform;
+}
+.tilt-brilho {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    560px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.08) 38%,
+    transparent 62%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.tilt-ativo .tilt-brilho {
+  opacity: 1;
+}
+.card.tilt-ativo {
+  box-shadow:
+    inset 0 0 0 1px #c7e1f8,
+    0 50px 80px -40px rgba(11, 70, 150, 0.55),
+    0 18px 30px -18px rgba(11, 70, 150, 0.25);
+}
+.card--limpeza.tilt-ativo,
+.card--rating.tilt-ativo,
+.card--consulta.tilt-ativo {
+  box-shadow: 0 50px 80px -36px rgba(8, 40, 100, 0.7);
+}
+
+/* Foto do topo em camadas */
+.hero__foto {
+  --fx: 0;
+  --fy: 0;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+.hero__pessoa {
+  rotate: y calc(var(--fx) * 10deg);
+  translate: calc(var(--fx) * 14px) calc(var(--fy) * 8px);
+}
+.hero__aura {
+  translate: calc(-50% + var(--fx) * -26px) calc(var(--fy) * -18px) -80px;
+}
+.selo--1 {
+  translate: calc(var(--fx) * 46px) calc(var(--fy) * 34px) 70px;
+}
+.selo--2 {
+  translate: calc(var(--fx) * 64px) calc(var(--fy) * 44px) 110px;
+}
+.selo--3 {
+  translate: calc(var(--fx) * 36px) calc(var(--fy) * 26px) 50px;
+}
+
+/* Textura fina de papel para dar acabamento */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__pessoa,
+  .selo--1,
+  .selo--2,
+  .selo--3 {
+    rotate: none;
+    translate: none;
+  }
+  .hero__aura {
+    translate: -50% 0;
+  }
+}

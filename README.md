@@ -19,7 +19,7 @@ O site é exportado como estático (`output: "export"` no `next.config.mjs`) par
 npm run deploy
 ```
 
-Isso roda `next build` e `wrangler pages deploy out --project-name easycred`. É preciso estar logado na Cloudflare (`npx wrangler login`).
+Isso roda `next build` e `wrangler pages deploy out --project-name easycred --branch main` (publica em produção). É preciso estar logado na Cloudflare (`npx wrangler login`).
 
 Os cabeçalhos de segurança ficam em `public/_headers`.
 
@@ -39,3 +39,10 @@ O componente `components/ConsultaScore.tsx` e os provedores em `lib/consulta/` c
 - Dados estruturados (JSON-LD) em `components/DadosEstruturados.tsx`: empresa (FinancialService com CNPJ, cidade, WhatsApp e Instagram), site, serviços e perguntas frequentes.
 - Imagem de compartilhamento (`public/og.jpg`) e ícones (`app/icon.png`, `app/apple-icon.png`, `public/icon-*.png`) são gerados a partir da logo e da foto com `npm run imagens`.
 - Quando o domínio próprio estiver ligado, defina `NEXT_PUBLIC_SITE_URL` (ex.: `https://www.easycredrr.com.br`) antes do `npm run deploy` para que canonical, sitemap e JSON-LD usem o endereço novo, e cadastre o site no Google Search Console.
+
+## Efeitos 3D
+
+- `components/Hero3D.tsx`: cena WebGL (three.js) com os triângulos da logo e esferas no topo. O three.js só carrega depois que a página está pronta, a animação pausa quando o topo sai da tela e, sem WebGL, ficam os triângulos em SVG (`HeroShapes`).
+- `components/Tilt.tsx`: inclinação 3D com reflexo nos elementos com `data-tilt` (o valor é o ângulo máximo).
+- `components/FotoProfundidade.tsx`: a foto e os selos do topo se movem em camadas com o mouse.
+- Tudo é desligado para quem pede menos movimento no sistema; inclinação e profundidade ficam desligadas em telas de toque.
