@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { linkWhatsApp, site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Política de privacidade | EasyCred" };
+export const metadata: Metadata = {
+  title: "Política de privacidade",
+  description: "Como a EasyCred coleta, usa e protege seus dados pessoais, de acordo com a LGPD.",
+  alternates: { canonical: "/privacidade" },
+};
 
 export default function Privacidade() {
   return (

@@ -31,3 +31,11 @@ Os cabeçalhos de segurança ficam em `public/_headers`.
 ## Consulta de CPF (desligada)
 
 O componente `components/ConsultaScore.tsx` e os provedores em `lib/consulta/` continuam no projeto, mas fora da página. A rota de API (`app/api/consulta/route.ts`) foi removida porque o site estático não roda servidor; ela está no histórico do Git (commit `466e551`). Para reativar a consulta será preciso um servidor (Railway, ou Cloudflare Workers com o adaptador OpenNext).
+
+## SEO
+
+- Metadados (título, descrição, canonical, Open Graph e Twitter) em `app/layout.tsx`; a página de privacidade tem os seus próprios.
+- `robots.txt`, `sitemap.xml` e `manifest.webmanifest` são gerados por `app/robots.ts`, `app/sitemap.ts` e `app/manifest.ts`.
+- Dados estruturados (JSON-LD) em `components/DadosEstruturados.tsx`: empresa (FinancialService com CNPJ, cidade, WhatsApp e Instagram), site, serviços e perguntas frequentes.
+- Imagem de compartilhamento (`public/og.jpg`) e ícones (`app/icon.png`, `app/apple-icon.png`, `public/icon-*.png`) são gerados a partir da logo e da foto com `npm run imagens`.
+- Quando o domínio próprio estiver ligado, defina `NEXT_PUBLIC_SITE_URL` (ex.: `https://www.easycredrr.com.br`) antes do `npm run deploy` para que canonical, sitemap e JSON-LD usem o endereço novo, e cadastre o site no Google Search Console.

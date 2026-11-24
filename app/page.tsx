@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Contador } from "@/components/Contador";
+import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { Header } from "@/components/Header";
 import { HeroShapes } from "@/components/HeroShapes";
 import { Logo } from "@/components/Logo";
@@ -83,6 +84,7 @@ export default function Home() {
       <a className="pular" href="#conteudo">
         Pular para o conteúdo
       </a>
+      <DadosEstruturados duvidas={DUVIDAS} />
       <Header />
       <Reveal />
       <Spotlight />
@@ -96,7 +98,7 @@ export default function Home() {
             <div className="hero__texto">
               <p className="pilula">
                 <span className="ponto-vivo" aria-hidden="true" />
-                Atendemos todo o Brasil
+                Boa Vista (RR) e todo o Brasil
               </p>
               <h1 className="hero__titulo">
                 <span className="adesivo">Limpe seu nome.</span>

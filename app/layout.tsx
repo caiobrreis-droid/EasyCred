@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Figtree } from "next/font/google";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const display = Archivo({
@@ -11,17 +12,58 @@ const display = Archivo({
 });
 const body = Figtree({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
+const descricaoBusca =
+  "Aumento de rating para você e sua empresa, limpeza de nome, ação revisional, score e Bacen. Atendimento pelo WhatsApp em Boa Vista (RR) e todo o Brasil.";
+
+const tituloPadrao = "EasyCred | Limpeza de nome, aumento de rating e ação revisional";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://easycred.pages.dev"),
-  title: "EasyCred | Limpeza de nome, rating e ação revisional",
-  description:
-    "A EasyCred cuida do seu CPF e do CNPJ da sua empresa: aumento de rating, limpeza de nome, ação revisional, score e pendências no Bacen. Atendimento pelo WhatsApp em todo o Brasil.",
+  metadataBase: new URL(site.url),
+  title: { default: tituloPadrao, template: "%s | EasyCred" },
+  description: descricaoBusca,
+  applicationName: "EasyCred",
+  keywords: [
+    "limpa nome",
+    "limpeza de nome",
+    "limpar nome CPF",
+    "limpar CNPJ",
+    "aumento de rating",
+    "rating bancário",
+    "rating pessoa jurídica",
+    "ação revisional",
+    "revisão de juros abusivos",
+    "aumento de score",
+    "Bacen",
+    "Registrato",
+    "SCR",
+    "Boa Vista RR",
+    "Roraima",
+  ],
+  authors: [{ name: "EasyCred" }],
+  creator: "EasyCred",
+  publisher: site.razaoSocial,
+  category: "Serviços financeiros",
+  alternates: { canonical: "/" },
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   openGraph: {
-    title: "EasyCred | Limpe seu nome",
-    description: "Aumento de rating, limpeza de nome, ação revisional, score e Bacen. Atendimento em todo o Brasil.",
-    locale: "pt_BR",
     type: "website",
-    images: ["/logo@2x.png"],
+    locale: "pt_BR",
+    url: "/",
+    siteName: "EasyCred",
+    title: tituloPadrao,
+    description: descricaoBusca,
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "EasyCred: limpe seu nome e resolva suas pendências" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: tituloPadrao,
+    description: descricaoBusca,
+    images: ["/og.jpg"],
   },
 };
 

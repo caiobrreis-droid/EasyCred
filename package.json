@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "npx serve out",
     "lint": "tsc --noEmit",
-    "deploy": "next build && wrangler pages deploy out --project-name easycred"
+    "deploy": "next build && wrangler pages deploy out --project-name easycred",
+    "imagens": "node scripts/gerar-imagens.cjs"
   },
   "engines": {
     "node": ">=20"
