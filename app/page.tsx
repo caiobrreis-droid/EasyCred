@@ -9,13 +9,13 @@ import { Spotlight } from "@/components/Spotlight";
 import { Timeline } from "@/components/Timeline";
 import { linkWhatsApp, site } from "@/lib/site";
 
-const FAIXA = ["Limpeza de CPF", "Limpeza de CNPJ", "Aumento de score", "Aumento de rating", "Bacen", "Consulta completa"];
+const FAIXA = ["Aumento de rating", "Limpeza de CPF", "Limpeza de CNPJ", "Ação revisional", "Aumento de score", "Bacen", "Consulta completa"];
 
 const PASSOS = [
-  { titulo: "Você chama", texto: "Mande uma mensagem no WhatsApp contando o que está travando o seu crédito." },
+  { titulo: "Você chama", texto: "Mande uma mensagem no WhatsApp contando a sua situação." },
   { titulo: "A gente analisa", texto: "Nossa equipe levanta todas as pendências e explica o seu caso sem enrolação." },
   { titulo: "Plano na mesa", texto: "Você recebe o caminho, o prazo e o valor antes de fechar qualquer coisa." },
-  { titulo: "Nome limpo", texto: "Acompanhamos até o fim e avisamos quando o seu crédito estiver liberado." },
+  { titulo: "Acompanhamento", texto: "Cuidamos de cada etapa do seu processo e mantemos você informado até a conclusão." },
 ];
 
 const DUVIDAS = [
@@ -25,7 +25,15 @@ const DUVIDAS = [
   },
   {
     p: "Consultar meu CPF baixa o meu score?",
-    r: "Não. Consultar o próprio CPF não afeta o score. O que pesa são pedidos de crédito feitos em excesso.",
+    r: "Não. Consultar o próprio CPF não afeta o score.",
+  },
+  {
+    p: "O que é rating?",
+    r: "É a classificação de risco que os bancos atribuem a cada CPF e CNPJ, numa escala de AA a H. Trabalhamos o rating tanto de pessoa física quanto de empresas.",
+  },
+  {
+    p: "O que é ação revisional?",
+    r: "É um processo para revisar contratos de financiamento, empréstimo ou cartão quando há juros ou cobranças abusivas. Primeiro analisamos o seu contrato para ver se cabe a ação.",
   },
   {
     p: "Vocês atendem fora de Roraima?",
@@ -92,11 +100,11 @@ export default function Home() {
               </p>
               <h1 className="hero__titulo">
                 <span className="adesivo">Limpe seu nome.</span>
-                <span className="adesivo adesivo--azul">Destrave seu crédito.</span>
+                <span className="adesivo adesivo--azul">Resolva suas pendências.</span>
               </h1>
               <p className="hero__lead">
-                A EasyCred tira o seu nome do vermelho e destrava o seu crédito: limpeza de CPF e CNPJ, aumento de score e
-                rating e pendências no Bacen. Tudo pelo WhatsApp, sem sair de casa.
+                A EasyCred cuida do seu CPF e do CNPJ da sua empresa: aumento de rating, limpeza de nome, ação revisional,
+                score e pendências no Bacen. Tudo pelo WhatsApp, sem sair de casa.
               </p>
               <div className="hero__acoes">
                 <a className="btn" href={linkWhatsApp("Olá! Quero limpar meu nome.")} target="_blank" rel="noopener noreferrer">
@@ -144,7 +152,7 @@ export default function Home() {
                   </svg>
                 </span>
                 <span>
-                  <b>Nome limpo</b>
+                  <b>Limpeza de nome</b>
                   <small>CPF e CNPJ</small>
                 </span>
               </div>
@@ -155,8 +163,8 @@ export default function Home() {
                   </svg>
                 </span>
                 <span>
-                  <b>Score em alta</b>
-                  <small>e rating da empresa</small>
+                  <b>Aumento de rating</b>
+                  <small>pessoa física e jurídica</small>
                 </span>
               </div>
               <div className="selo selo--3" aria-hidden="true">
@@ -182,20 +190,59 @@ export default function Home() {
           <div className="container">
             <div className="secao__cabeca" data-reveal>
               <h2 id="servicos-titulo" className="secao__titulo">
-                Tudo o que trava o seu crédito, a gente resolve.
+                Serviços para você e para a sua empresa.
               </h2>
-              <p>Do nome sujo no Serasa ao apontamento no Banco Central, para você e para a sua empresa.</p>
+              <p>Do nome negativado ao contrato com juros abusivos. Cada caso é analisado antes de qualquer contratação.</p>
             </div>
 
             <div className="bento">
+              <article className="card spot card--rating" data-reveal>
+                <div className="card__topo">
+                  <div className="card__tags">
+                    <span className="card__tag">Pessoa física</span>
+                    <span className="card__tag">Pessoa jurídica</span>
+                  </div>
+                  <h3>Aumento de rating</h3>
+                  <p>
+                    Rating é a nota de risco que os bancos dão ao seu CPF ou CNPJ, numa escala que vai de AA a H. A gente
+                    analisa o que está pesando na sua classificação e trabalha para melhorá-la, para você e para a sua
+                    empresa.
+                  </p>
+                </div>
+                <div className="escala" aria-hidden="true">
+                  {["AA", "A", "B", "C", "D", "E", "F", "G", "H"].map((n, i) => (
+                    <span key={n} className={`escala__nivel escala__nivel--${i}`}>
+                      {n}
+                    </span>
+                  ))}
+                  <span className="escala__marcador" />
+                </div>
+                <div className="card__acoes">
+                  <a
+                    className="btn btn--branco"
+                    href={linkWhatsApp("Olá! Quero saber sobre o aumento de rating do meu CPF.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>Rating do meu CPF</span>
+                    <Seta />
+                  </a>
+                  <a
+                    className="btn btn--vidro-claro"
+                    href={linkWhatsApp("Olá! Quero saber sobre o aumento de rating da minha empresa.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>Rating da empresa</span>
+                  </a>
+                </div>
+              </article>
+
               <article className="card spot card--limpeza" data-reveal>
                 <div className="card__topo">
                   <span className="card__tag">CPF e CNPJ</span>
                   <h3>Limpeza de nome</h3>
-                  <p>
-                    Tiramos as restrições do seu nome nos órgãos de proteção ao crédito para você voltar a comprar,
-                    financiar e abrir conta.
-                  </p>
+                  <p>Trabalhamos para retirar as restrições do seu CPF ou CNPJ nos órgãos de proteção, como Serasa, SPC e Boa Vista.</p>
                 </div>
                 <div className="cpf-card" aria-hidden="true">
                   <div className="cpf-card__linha">
@@ -215,40 +262,14 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="card spot card--score" data-reveal>
+              <article className="card spot" data-reveal>
                 <div className="card__topo">
                   <span className="card__tag">Pessoa física</span>
                   <h3>Aumento de score</h3>
-                  <p>Organizamos seu cadastro e seu histórico para o score subir e o banco aprovar o seu crédito.</p>
+                  <p>Analisamos seu cadastro e seu histórico e cuidamos do que pode estar puxando o seu score para baixo.</p>
                 </div>
-                <svg className="grafico" viewBox="0 0 300 90" aria-hidden="true" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stopColor="#3AA6F5" stopOpacity="0.35" />
-                      <stop offset="1" stopColor="#3AA6F5" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M0 80 C40 78 60 70 90 66 S140 60 170 44 S230 22 300 8 L300 90 L0 90 Z" fill="url(#g-area)" />
-                  <path className="grafico__linha" d="M0 80 C40 78 60 70 90 66 S140 60 170 44 S230 22 300 8" pathLength={1} />
-                </svg>
-                <a className="card__link" href={linkWhatsApp("Olá! Quero aumentar meu score.")} target="_blank" rel="noopener noreferrer">
-                  Quero subir meu score <Seta />
-                </a>
-              </article>
-
-              <article className="card spot" data-reveal>
-                <div className="card__topo">
-                  <span className="card__tag">Empresas</span>
-                  <h3>Aumento de rating</h3>
-                  <p>Melhoramos a nota da sua empresa nos bancos para liberar capital de giro, limite e financiamento.</p>
-                </div>
-                <a
-                  className="card__link"
-                  href={linkWhatsApp("Olá! Quero melhorar o rating da minha empresa.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Falar sobre rating <Seta />
+                <a className="card__link" href={linkWhatsApp("Olá! Quero saber sobre o aumento de score.")} target="_blank" rel="noopener noreferrer">
+                  Falar sobre score <Seta />
                 </a>
               </article>
 
@@ -256,7 +277,7 @@ export default function Home() {
                 <div className="card__topo">
                   <span className="card__tag">Registrato e SCR</span>
                   <h3>Bacen</h3>
-                  <p>Resolvemos apontamentos no Banco Central que travam empréstimos, mesmo com o nome limpo.</p>
+                  <p>Atuamos em apontamentos no Banco Central que continuam aparecendo mesmo com o nome limpo.</p>
                 </div>
                 <a
                   className="card__link"
@@ -268,6 +289,25 @@ export default function Home() {
                 </a>
               </article>
 
+              <article className="card spot card--revisional" data-reveal>
+                <div className="card__topo">
+                  <span className="card__tag">Contratos e juros</span>
+                  <h3>Ação revisional</h3>
+                  <p>
+                    Analisamos seus contratos de financiamento, empréstimo ou cartão. Se houver juros ou cobranças abusivas,
+                    entramos com a ação para revisar os valores, com apoio jurídico.
+                  </p>
+                </div>
+                <a
+                  className="card__link"
+                  href={linkWhatsApp("Olá! Quero saber sobre ação revisional.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Analisar meu contrato <Seta />
+                </a>
+              </article>
+
               <article className="card spot card--consulta" data-reveal>
                 <div className="card__topo">
                   <span className="card__tag">CPF e CNPJ</span>
@@ -275,7 +315,7 @@ export default function Home() {
                   <p>Levantamos tudo o que aparece no seu nome para você saber exatamente o que precisa ser resolvido.</p>
                 </div>
                 <a
-                  className="btn btn--branco"
+                  className="btn"
                   href={linkWhatsApp("Olá! Quero uma consulta completa do meu CPF/CNPJ.")}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -288,12 +328,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------------- COMO FUNCIONA ---------------- */}
+{/* ---------------- COMO FUNCIONA ---------------- */}
         <section className="passos" id="como-funciona" aria-labelledby="passos-titulo">
           <div className="container">
             <div className="secao__cabeca" data-reveal>
               <h2 id="passos-titulo" className="secao__titulo">
-                Do nome sujo ao crédito aprovado em 4 passos.
+                Do primeiro contato à conclusão em 4 passos.
               </h2>
             </div>
             <Timeline passos={PASSOS} />
@@ -306,7 +346,7 @@ export default function Home() {
             <div className="insta__painel" data-reveal>
               <div className="insta__texto">
                 <h2 id="insta-titulo" className="secao__titulo">
-                  Quem já voltou a ter crédito mostra no Instagram.
+                  Nossos clientes contam como foi no Instagram.
                 </h2>
                 <p>Os feedbacks dos nossos clientes ficam nos destaques do @easycredrr, com prints e vídeos reais.</p>
                 <a className="btn" href={site.instagram} target="_blank" rel="noopener noreferrer">
@@ -363,7 +403,7 @@ export default function Home() {
               <h2 className="final__titulo">
                 <span className="adesivo">Limpe seu nome.</span>
               </h2>
-              <p>Chame a gente no WhatsApp e descubra o caminho para voltar a ter crédito.</p>
+              <p>Chame a gente no WhatsApp e entenda o que dá para fazer no seu caso.</p>
               <div className="hero__acoes">
                 <a className="btn btn--branco" href={linkWhatsApp("Olá! Quero limpar meu nome.")} target="_blank" rel="noopener noreferrer">
                   <span>Quero limpar meu nome</span>

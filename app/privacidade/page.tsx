@@ -39,7 +39,7 @@ export default function Privacidade() {
 
           <h2>Com quem compartilhamos</h2>
           <p>
-            Apenas com os birôs de crédito e órgãos necessários para fazer a consulta ou executar o serviço contratado.
+            Apenas com os órgãos de consulta cadastral (como Serasa, SPC e Boa Vista) e demais órgãos necessários para fazer a consulta ou executar o serviço contratado.
             Não vendemos seus dados.
           </p>
 
